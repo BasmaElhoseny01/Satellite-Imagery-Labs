@@ -353,6 +353,8 @@ def run(UNet):
 
     optimizer_ft = optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-4)
 
+    # The StepLR scheduler decreases the learning rate of the optimizer by a factor (gamma) at specified intervals (step_size).
+    # Here, the learning rate will be decreased by a factor of 0.1 every 30 epochs.
     exp_lr_scheduler = lr_scheduler.StepLR(optimizer_ft, step_size=30, gamma=0.1)
 
     model = train_model(model, optimizer_ft, exp_lr_scheduler, num_epochs=60)
